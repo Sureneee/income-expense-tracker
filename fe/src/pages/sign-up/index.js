@@ -22,11 +22,8 @@ const SignupPage = () => {
     setError('Aldaa garlaa!')
       return
     }
-
+//BE holboj bga
     const { data } = await axios.post(BASE_URL + "/auth/signUp", {username: formRef.current[0].value, password: formRef.current[1].value, });
-  //   if(data) {
-  //     router.push("/");
-  //   }
   };
 
   return (
