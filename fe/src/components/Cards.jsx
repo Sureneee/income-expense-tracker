@@ -37,7 +37,7 @@ export const Cards = () => {
           <div className={styles.Card}>
             <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 b-b-[1px] border-red">
               <div className="w-2 h-2 bg-[#0166FF] rounded-full"></div>
-              <p className="text-4 font-semibold">Your Income</p>
+              <p className="text-4 font-semibold">Total Expenses</p>
             </div>
             <div className="flex flex-col py-[20px] px-6 gap-4">
               <div>

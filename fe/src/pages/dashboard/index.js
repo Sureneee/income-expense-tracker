@@ -12,9 +12,9 @@ import AvatarImage from "@/assets/Avatar.png";
 const Dashboard = () => {
     return (
     
-        <div className="bg-zinc-100">
+        <div className="bg-zinc-100 w-full">
 {/* Navbar */}
-          <div className="flex w-[1200px] py-4 px-[120px] justify-between bg-white items-center">
+          <div className="flex  py-4 px-[120px] justify-between bg-white items-center">
             <div className="flex items-center gap-[24px]">
               <LogoVector/>
               <h1 className="text-[16px] font-semibold">Dashboard</h1>
