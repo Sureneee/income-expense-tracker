@@ -1,5 +1,6 @@
 import { UpIcon } from "@/components/icon/UpIcon";
 import Image from "next/image";
+import CardImage from "@/assets/Card.png";
 import { DownIcon } from "./icon/DownIcon";
 
 const styles = {
@@ -11,7 +12,7 @@ export const Cards = () => {
     return (
         <div className="flex ">
         <div className="flex mt-8 gap-6">
-          <Image src="/assets/Card.png" width={384} height={216} alt="Card"/>  
+          <Image src={CardImage} width={384} height={216} alt="Card"/>  
 
           <div className={styles.Card}>
             <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 b-b-[1px] border-red">

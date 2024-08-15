@@ -27,7 +27,6 @@ import { useState } from 'react';
 import React from 'react';
 import { Currency } from '@/components/Currency';
 import { Cash } from '@/components/Cash';
-// import { GoToDashboard } from '@/components/GoToDashboard';
 import { useRouter } from 'next/router';
 import { Finish } from '@/components/Finish';
 

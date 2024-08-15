@@ -4,6 +4,7 @@ import { AddIcon } from "@/components/icon/AddIcon";
 import { LogoVector } from "@/components/icon/LogoVector";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import AvatarImage from "@/assets/Avatar.png";
 
 
 
@@ -21,7 +22,7 @@ const Dashboard = () => {
             </div>
             <div className="flex gap-[24px] h-10">
               <Button className="w-full rounded-2xl bg-[#0166FF] text-[16px] font-normal "> <AddIcon/>  Record</Button>
-              <Image src="/assets/Avatar.png" width={40} height={40} alt="Avatar Image"/>             
+              <Image src={AvatarImage} width={40} height={40} alt="Avatar Image"/>             
             </div>
           </div>
           <Cards/>
