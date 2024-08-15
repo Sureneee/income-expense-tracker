@@ -11,7 +11,7 @@ const Dashboard = () => {
               <p className="text-[16px] font-medium">Records</p>
             </div>
             <div>
-              
+              hello
             </div>
           </div>
         </div>
