@@ -29,6 +29,7 @@ import { Currency } from '@/components/Currency';
 import { Cash } from '@/components/Cash';
 // import { GoToDashboard } from '@/components/GoToDashboard';
 import { useRouter } from 'next/router';
+import { Finish } from '@/components/Finish';
 
 
 const styles = {
@@ -84,6 +85,7 @@ const SignUpStep = () => {
       <div className={styles.showContent}>
         {showSelect === 1 ? <Currency /> : <></>}
         {showSelect === 2 ? <Cash /> : <></>}
+        {showSelect === 3 ? <Finish /> : <></>}
         
         <Button className={styles.button} onClick={handlerClick}>
           {showSelect === 3 ? "Go to dashboard" : "Confirm"}
