@@ -15,7 +15,7 @@ export const Cards = () => {
           <Image src={CardImage} width={384} height={216} alt="Card"/>  
 
           <div className={styles.Card}>
-            <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 b-b-[1px] border-red">
+            <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 border-b border-red">
               <div className="w-2 h-2 bg-[#84CC16] rounded-full"></div>
               <p className="text-4 font-semibold">Your Income</p>
             </div>
@@ -35,7 +35,7 @@ export const Cards = () => {
           </div>
 
           <div className={styles.Card}>
-            <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 b-b-[1px] border-red">
+            <div className="flex items-center gap-2 py-4 px-6 py-4 px-6 border-b border-red">
               <div className="w-2 h-2 bg-[#0166FF] rounded-full"></div>
               <p className="text-4 font-semibold">Total Expenses</p>
             </div>

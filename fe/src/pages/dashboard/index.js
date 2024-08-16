@@ -5,6 +5,7 @@ import { LogoVector } from "@/components/icon/LogoVector";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import AvatarImage from "@/assets/Avatar.png";
+import { Records } from "@/components/Records";
 
 
 
@@ -25,9 +26,11 @@ const Dashboard = () => {
               <Image src={AvatarImage} width={40} height={40} alt="Avatar Image"/>             
             </div>
           </div>
-          <Cards/>
-          <Charts/>
-           
+          <div className="max-w-[1200px] flex flex-col">
+              <Cards/>
+              <Charts/>
+              <Records />
+          </div>
 
               </div>
 
