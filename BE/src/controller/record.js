@@ -1,10 +1,45 @@
+
 import { db } from "../../db.js";
+
+export const getBarChartData = async (req, res) => {
+  const queryText = "SELECT * FROM record";
+  try {
+    const result = await db.query(queryText);
+
+    const groupedData = _.groupBy(result.rows, (el) => {
+      const moonLanding = new Date(el.createdat);
+      return moonLanding.getMonth() + 1;
+    });
+
+    const response = _.map(groupedData, (monthRecords, month) => {
+      const totalAmount = monthRecords.reduce(
+        (acc, record) => {
+          if (record.transaction_type === "INC") {
+            acc.income += record.amount;
+          } else {
+            acc.expense += record.amount;
+          }
+          return acc;
+        },
+        { income: 0, expense: 0 }
+      );
+
+      return { month, ...totalAmount };
+    });
+    res.send(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
 
 
 // CREATE record (POST)
 export const createRecord = async (req, res) => {
     const { user_id, name, amount, transaction_type, description, category_id } = req.body;
-    const queryText = `INSERT INTO records ( user_id, name, amount, transaction_type, description, category_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const queryText = `INSERT INTO record ( user_id, name, amount, transaction_type, description, category_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
   
     try {
       const result = await db.query(queryText, [
@@ -28,7 +63,7 @@ export const createRecord = async (req, res) => {
 //SELECT record (GET)
 export const getRecord = async (req, res) => {
     const queryText = `
-    SELECT * FROM records
+    SELECT * FROM record
     `;
   
     try {
@@ -50,7 +85,7 @@ export const updateRecord = async (req, res) => {
   
     try {
       const result = await db.query(
-        "UPDATE records SET name = $1, description = $2 WHERE id = $3 RETURNING *",
+        "UPDATE record SET name = $1, description = $2 WHERE id = $3 RETURNING *",
         [name, description, id]
       );
       if (result.rows.length === 0) {
@@ -73,7 +108,7 @@ export const deleteRecord = async (req, res) => {
   
     try {
       const result = await db.query(
-        "DELETE FROM records WHERE id = $1 RETURNING *",
+        "DELETE FROM record WHERE id = $1 RETURNING *",
         [id]
       );
   

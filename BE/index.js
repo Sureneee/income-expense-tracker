@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/users', user);
 app.use('/record', record);
 app.use('/category', category);
-app.use('/api/', auth);
+app.use('/api', auth);
 
 
 
