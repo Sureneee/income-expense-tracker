@@ -2,31 +2,30 @@ import { Bar, BarChart, YAxis, XAxis, CartesianGrid } from "recharts";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { Donut } from "@/components/PieChart";
 
-const chartData = [
-  { month: "January", income: 3200000, expense: 2500000 },
-  { month: "January", income: 3200000, expense: 2500000 },
-  { month: "January", income: 3200000, expense: 2500000 },
-  { month: "January", income: 3200000, expense: 2500000 },
-  { month: "January", income: 3200000, expense: 2500000 },
-  { month: "January", income: 3200000, expense: 2500000 },
-];
-
-const chartConfig = {
-  income: {
-    label: "Income",
-    color: "#84CC16",
-  },
-  mobile: {
-    label: "Expense",
-    color: "#F2901C",
-  },
-};
-
 const styles = {
   Chart: "w-[588px] h-fit rounded-[12px] bg-white",
 };
 
 export const Charts = () => {
+  const [chartData, setChartData] = useState([]);
+  const fetchData = async () => {
+    const res = await axios.get('http://localhost:8000/record/barChart');
+    setChartData(res.data);
+}
+useEffect(() => {
+    fetchData()
+}, [])
+  
+  const chartConfig = {
+    income: {
+      label: "Income",
+      color: "#84CC16",
+    },
+    mobile: {
+      label: "Expense",
+      color: "#F2901C",
+    },
+  };
   return (
     <div className="flex mt-6 gap-6">
       {/* Chart1 */}
