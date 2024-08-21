@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import AvatarImage from "@/assets/Avatar.png";
 import { Records } from "@/components/Records";
+import { BarChart } from "recharts";
+import { BarChart2 } from "lucide-react";
 
 
 
@@ -30,6 +32,7 @@ const Dashboard = () => {
               <Cards/>
               <Charts/>
               <Records />
+              <BarChart2 />
           </div>
 
               </div>

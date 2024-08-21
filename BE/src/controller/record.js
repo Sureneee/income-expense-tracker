@@ -1,16 +1,17 @@
-
+import _ from "lodash";
 import { db } from "../../db.js";
+
 
 export const getBarChartData = async (req, res) => {
   const queryText = "SELECT * FROM record";
   try {
     const result = await db.query(queryText);
-
+   
     const groupedData = _.groupBy(result.rows, (el) => {
-      const moonLanding = new Date(el.createdat);
-      return moonLanding.getMonth() + 1;
-    });
-
+    const moonLanding = new Date(el.createdat);
+    return moonLanding.getMonth() + 1;
+    } );
+  
     const response = _.map(groupedData, (monthRecords, month) => {
       const totalAmount = monthRecords.reduce(
         (acc, record) => {
