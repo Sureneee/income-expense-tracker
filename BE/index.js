@@ -4,7 +4,7 @@ import { user } from "./src/router/user.js";
 import cors from "cors";
 import { db } from "./db.js";
 import { record } from "./src/router/record.js";
-import { category } from "./src/controller/category.js";
+import { category } from "./src/router/category.js";
 import { auth } from "./src/router/auth.js";
 
 const app = express();
@@ -71,7 +71,6 @@ app.get("/record/createTable", async (req, res) => {
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) references users(id),
   FOREIGN KEY (category_id) references category(id),
-
   )`;
 
   try {

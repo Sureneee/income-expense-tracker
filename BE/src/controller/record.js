@@ -6,7 +6,6 @@ export const getBarChartData = async (req, res) => {
   const queryText = "SELECT * FROM record";
   try {
     const result = await db.query(queryText);
-   
     const groupedData = _.groupBy(result.rows, (el) => {
     const moonLanding = new Date(el.createdat);
     return moonLanding.getMonth() + 1;

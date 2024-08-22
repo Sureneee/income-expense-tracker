@@ -6,10 +6,14 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import AvatarImage from "@/assets/Avatar.png";
 import { Records } from "@/components/Records";
-import { BarChart } from "recharts";
-import { BarChart2 } from "lucide-react";
+import BarChart2 from "@/components/BarChart";
+import { AddRecord } from "@/components/AddRecord";
+import { DialogRecord } from "@/components/Dialog";
 
 
+const handlerClick = () => {
+    router.push('/AddRecord');
+  }
 
 
 const Dashboard = () => {
@@ -24,15 +28,16 @@ const Dashboard = () => {
               <p className="text-[16px] font-medium">Records</p>
             </div>
             <div className="flex gap-[24px] h-10">
-              <Button className="w-full rounded-2xl bg-[#0166FF] text-[16px] font-normal "> <AddIcon/>  Record</Button>
+              <DialogRecord/>
+              {/* <Button className="w-full rounded-2xl bg-[#0166FF] text-[16px] font-normal " onclick = {handlerClick}> <AddIcon/>  Record</Button> */}
               <Image src={AvatarImage} width={40} height={40} alt="Avatar Image"/>             
             </div>
           </div>
           <div className="max-w-[1200px] flex flex-col">
               <Cards/>
-              <Charts/>
-              <Records />
+              {/* <Charts/> */}
               <BarChart2 />
+              <Records />
           </div>
 
               </div>
