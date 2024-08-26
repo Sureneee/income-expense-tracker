@@ -1,7 +1,8 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { Pie, PieChart } from "recharts";
+import axios from "axios";
 
 import {
   Card,
@@ -18,13 +19,21 @@ import {
 } from "@/components/ui/chart";
 
 export const Donut = () => {
-  const chartData = [
-    { browser: "Bills", visitors: 5000000, fill: "var(--color-chrome)" },
-    { browser: "Food", visitors: 5000000, fill: "var(--color-safari)" },
-    { browser: "Shopping", visitors: 5000000, fill: "var(--color-firefox)" },
-    { browser: "Insurance", visitors: 5000000, fill: "var(--color-edge)" },
-    { browser: "Clothing", visitors: 5000000, fill: "var(--color-other)" },
-  ];
+//   const chartData = [
+//     { browser: "Bills", visitors: 5000000, fill: "var(--color-chrome)" },
+//     { browser: "Food", visitors: 5000000, fill: "var(--color-safari)" },
+//     { browser: "Shopping", visitors: 5000000, fill: "var(--color-firefox)" },
+//     { browser: "Insurance", visitors: 5000000, fill: "var(--color-edge)" },
+//     { browser: "Clothing", visitors: 5000000, fill: "var(--color-other)" },
+//   ];
+  const [piechartData, setPieChartData] = useState([]);
+  const fetchData =  async () => {
+      const res = await axios.get('http://localhost:8000/record/pieChart');
+      setPieChartData(res.data);
+  }
+  useEffect(() => {
+      fetchData()
+  }, [])
 
   const chartConfig = {
     visitors: {
@@ -53,6 +62,7 @@ export const Donut = () => {
   };
 
   return (
+    <div>
     <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[156px]"
@@ -63,13 +73,14 @@ export const Donut = () => {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              data={piechartData}
+              dataKey="amount"
+              nameKey="categoryname"
               innerRadius={45}
             />
           </PieChart>
         </ChartContainer>
-
+    </div>
   );
+
 };

@@ -17,13 +17,13 @@ import {
 } from "@/components/ui/dialog"
 import { DatePicker } from "./DatePicker";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Plus } from "lucide-react";
 
 export function DialogRecord() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline"><AddIcon/>  Record</Button>
+        <Button variant="outline"><Plus className="mr-[6.5px]" /> Record</Button>
       </DialogTrigger>
       <DialogContent className="w-[792px]">
         <DialogHeader className="border-b py-5 px-6 border-slate-400">

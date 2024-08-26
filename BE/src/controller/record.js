@@ -31,6 +31,27 @@ export const getBarChartData = async (req, res) => {
     console.error(error);
   }
 };
+export const getRecordsByTransactionType = async (req, res) => {
+  const queryText = `
+    SELECT record.*, category.name AS categoryName
+    FROM record
+    INNER JOIN category ON record.category_id = category.id
+    WHERE transaction_type = 'EXP';
+  `;
+
+  try {
+    const result = await db.query(queryText);
+    const groupByCategoryName = _.groupBy(result.rows, (row) => row.categoryname)
+    const response = _.map(groupByCategoryName, (category) => category.reduce((acc, row) => {
+      acc.amount += row.amount;
+      return acc
+    }))
+    
+    res.status(200).json(response);
+  } catch (error) {
+    handleError(res, error);
+  }
+};
 
 
 

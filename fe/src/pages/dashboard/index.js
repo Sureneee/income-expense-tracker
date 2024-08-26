@@ -1,51 +1,72 @@
-import { Cards } from "@/components/Cards";
-import { Charts } from "@/components/Charts";
-import { AddIcon } from "@/components/icon/AddIcon";
-import { LogoVector } from "@/components/icon/LogoVector";
-import { Button } from "@/components/ui/button";
+import { memo, useCallback, useEffect, useState } from "react";
+import { CustomPieChart } from "@/components/PieChart";
 import Image from "next/image";
-import AvatarImage from "@/assets/Avatar.png";
+import withAuth from "@/components/WithAuth";
+import Card from "@/assets/Card.png";
+import axiosInstance from "axios";
+import  BarChart2  from "@/components/BarChart";
+import { CustomCard } from "@/components/CustomCard";
+import { formatCurrency } from "@/lib/utils";
+import { Donut } from "@/components/PieChart";
 import { Records } from "@/components/Records";
-import BarChart2 from "@/components/BarChart";
-import { AddRecord } from "@/components/AddRecord";
-import { DialogRecord } from "@/components/Dialog";
-
-
-const handlerClick = () => {
-    router.push('/AddRecord');
-  }
 
 
 const Dashboard = () => {
+  
+//   const [pieChartData, setPieChartData] = useState([]);
+
+//   const fetchPieChartData = useCallback(async () => {
+//     try {
+//       const response = await axiosInstance.get("http://localhost:8000/record/pieChart");
+//       const formattedData = response.data.map((item) => ({
+//         ...item,
+//         fill: `var(--color-${item.categoryname})`,
+//       }));
+//       setPieChartData(formattedData);
+//     } catch (error) {
+//       console.error("Error fetching pie chart data:", error);
+//     }
+//   }, []);
+
+//   useEffect(() => {
+//     fetchPieChartData();
+//   }, [ fetchPieChartData]);
+
+
+  const CardWithImage = () => (
+    <div className="relative">
+      <Image alt="VirtualCard" src={Card} width={384} height={216} />
+      <div className="absolute z-10 text-white bottom-10 left-10">
+        <p className="leading-6 opacity-50">Cash</p>
+        <span className="text-[24px] leading-8 font-semibold">
+          {/* {formatCurrency(1000000)} */}
+        </span>
+      </div>
+    </div>
+  );
     return (
     
-        <div className="bg-zinc-100 w-full">
-{/* Navbar */}
-          <div className="flex  py-4 px-[120px] justify-between bg-white items-center">
-            <div className="flex items-center gap-[24px]">
-              <LogoVector/>
-              <h1 className="text-[16px] font-semibold">Dashboard</h1>
-              <p className="text-[16px] font-medium">Records</p>
-            </div>
-            <div className="flex gap-[24px] h-10">
-              <DialogRecord/>
-              {/* <Button className="w-full rounded-2xl bg-[#0166FF] text-[16px] font-normal " onclick = {handlerClick}> <AddIcon/>  Record</Button> */}
-              <Image src={AvatarImage} width={40} height={40} alt="Avatar Image"/>             
-            </div>
-          </div>
-          <div className="max-w-[1200px] flex flex-col">
-              <Cards/>
-              {/* <Charts/> */}
-              <BarChart2 />
-              <Records />
-          </div>
-
-              </div>
-
-
-             
-           
-    );
+    <div className="flex flex-col gap-6 bg-slate-100">
+      <div className="flex gap-6">
+        <CardWithImage />
+        <CustomCard />
+        <CustomCard
+          color="bg-[#0166FF]"
+          title="Total Expenses"
+          balance={-1200000}
+          percent={-30}
+        />
+      </div>
+      <div className="flex gap-6">
+        <BarChart2/>
+        <Donut/>
+        {/* <CustomPieChart chartData={pieChartData} /> */}
+      </div>
+      <Records/>
+    </div>
+  );
 };
+           
+ 
 
 export default Dashboard;
