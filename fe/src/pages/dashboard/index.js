@@ -1,45 +1,21 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomPieChart } from "@/components/PieChart";
 import Image from "next/image";
-import withAuth from "@/components/WithAuth";
 import Card from "@/assets/Card.png";
-import axiosInstance from "axios";
 import  BarChart2  from "@/components/BarChart";
 import { CustomCard } from "@/components/CustomCard";
-import { formatCurrency } from "@/lib/utils";
 import { Donut } from "@/components/PieChart";
 import { Records } from "@/components/Records";
 
 
 const Dashboard = () => {
   
-//   const [pieChartData, setPieChartData] = useState([]);
-
-//   const fetchPieChartData = useCallback(async () => {
-//     try {
-//       const response = await axiosInstance.get("http://localhost:8000/record/pieChart");
-//       const formattedData = response.data.map((item) => ({
-//         ...item,
-//         fill: `var(--color-${item.categoryname})`,
-//       }));
-//       setPieChartData(formattedData);
-//     } catch (error) {
-//       console.error("Error fetching pie chart data:", error);
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     fetchPieChartData();
-//   }, [ fetchPieChartData]);
-
-
   const CardWithImage = () => (
     <div className="relative">
       <Image alt="VirtualCard" src={Card} width={384} height={216} />
       <div className="absolute z-10 text-white bottom-10 left-10">
         <p className="leading-6 opacity-50">Cash</p>
         <span className="text-[24px] leading-8 font-semibold">
-          {/* {formatCurrency(1000000)} */}
         </span>
       </div>
     </div>
@@ -60,7 +36,6 @@ const Dashboard = () => {
       <div className="flex gap-6">
         <BarChart2/>
         <Donut/>
-        {/* <CustomPieChart chartData={pieChartData} /> */}
       </div>
       <Records/>
     </div>
@@ -70,3 +45,39 @@ const Dashboard = () => {
  
 
 export default Dashboard;
+
+
+
+
+
+
+
+// import { formatCurrency } from "@/lib/utils";
+// import withAuth from "@/components/WithAuth";
+// import axiosInstance from "axios";
+
+//   const [pieChartData, setPieChartData] = useState([]);
+
+//   const fetchPieChartData = useCallback(async () => {
+//     try {
+//       const response = await axiosInstance.get("http://localhost:8000/record/pieChart");
+//       const formattedData = response.data.map((item) => ({
+//         ...item,
+//         fill: `var(--color-${item.categoryname})`,
+//       }));
+//       setPieChartData(formattedData);
+//     } catch (error) {
+//       console.error("Error fetching pie chart data:", error);
+//     }
+//   }, []);
+
+//   useEffect(() => {
+//     fetchPieChartData();
+//   }, [ fetchPieChartData]);
+
+
+
+ {/* <CustomPieChart chartData={pieChartData} /> */}
+
+
+ {/* {formatCurrency(1000000)} */}

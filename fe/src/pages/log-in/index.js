@@ -1,3 +1,5 @@
+"use client"
+
 import { LogoIcon } from "@/components/icon/LogoIcon";
 import { useRouter } from "next/router";
 import { useRef } from "react";
@@ -5,6 +7,7 @@ import axios from "axios";
 import { CustomForm } from "@/components/CustomForm";
 import { CustomLink } from "@/components/CustomLink";
 import { LOGIN_INPUTS } from "@/constants";
+import { axiosInstance } from "@/lib";
 
 
 const SigninPage = () => {
@@ -13,11 +16,14 @@ const SigninPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); //log darahaar neg l udaa hevledegiig n boliulaad darah bolgond hevlej bolgoj bga
-
-        const [email, password] = formRef.current
-        console.log(email.value, password.value)
+        console.log(formRef.current, 'ref')
+        const formData = new FormData(formRef.current);
+        const { email, password } = Object.fromEntries(formData);
+        console.log(email,password)
+      
         try {
-            const response = await axios.post('http://localhost:8000/api/signin', {email: email.value, password: password.value });
+            const response = await axiosInstance.post('/api/signin', {email: email, password: password });
+            console.log(response.data)
             localStorage.setItem('user', JSON.stringify(response.data.user[0]))
             router.push("/dashboard");
         }   catch (error) {
@@ -29,7 +35,7 @@ const SigninPage = () => {
     return (
         <div className="grid w-full h-screen grid-cols-2">
             <div className="flex items-center justify-center">
-                <div className="flex flex-col items-center w-[384px] gap-10" onSubmit={handleSubmit} ref={formRef}>
+                <div className="flex flex-col items-center w-[384px] gap-10">
                     <LogoIcon/>
                     <div className="space-y-1 text-center">
                         <h1 className="text-slate-900 text-2xl font-semibold">Welcome Back</h1>

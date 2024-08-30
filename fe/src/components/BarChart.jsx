@@ -6,7 +6,7 @@ import { ChartContainer } from "./ui/chart";
 
 
 const styles = {
-  Chart: " h-fit rounded-[12px] bg-white",
+  Chart: " h-fit w-[588px] rounded-[12px] bg-white",
 };
 
 const BarChart2 = () => {
@@ -54,7 +54,7 @@ const BarChart2 = () => {
           </p>
         </div>
         <div className="py-[32px] px-[24px]">
-      <ChartContainer config={chartConfig} className="h-[226px] w-[588px]">
+      <ChartContainer config={chartConfig} className="h-[162px] w-[542px]">
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
           <YAxis
